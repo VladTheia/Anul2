@@ -1,0 +1,22 @@
+Tema 1 IOCLA Postfix
+
+Implementarea incepe la labelul parse_string, unde parcurg sirul caracter
+cu caracter, si interpretez valoarea lor ascii astfel:
+
+Daca am o cifra (daca am un caracter cu valoarea '0' sau mai mare) construiesc
+numarul format din cifra respectiva si cele ce urmeaza dupa ea pana la 
+intalnirea unu caracter spatiu ' ' (daca este cazul), adica sar la labelul
+build_nr iar mai apoi la inc_order daca trebuie sa cresc ordinul de marime
+al numarul (unitati, zeci, sute, etc.)
+
+Daca am un operand +,-,*,/ atunci sar la labelul corespunzator operatiei, cu
+exceptia -, unde mai intai verific la labelul minus_case daca nu este vorba de
+minusul ce defineste un numar negativ, si nu cel ce defineste operatia de
+scadere (fapt ce se verifica inspectand caracterul imediat urmator)
+
+In cazul in care avem div am observat ca desi ne dorim sa impartim eax la ebx,
+idiv realizaeaza operatia de impartire a edx:eax la ebx, ceea ce inseamna ca
+edx defineste semnul lui eax, si trebuie setat ca atare.
+
+Dupa terminarea expresiei in stiva vom avea rezultatul final, intrucat fiecare
+operand salveaza rezultatul tot pe stiva.

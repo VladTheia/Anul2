@@ -1,0 +1,34 @@
+Vlad Theia-Madalin
+324CC
+Tema 1 PA
+
+    In vederea rezolvarii temei 1, am avut de proiectat 3 algorimti de optimizare a alegerilor facute de 2 jucatori,
+care joaca 3 jocuri diferite.
+
+    Problema 1.
+Pentru problema 1 am sortat vectorul in ordine crescatoare (era de tip primitiv si nu-l puteam sorta direct descrescator,
+dar nici nu este nevoie pentru ca putem obtine diferenta in modul). Pentru a scadea timpul de rulare, am incercat sa fac
+un fel de loop unrooling, prin doua for-uri unde indexul creste din 2 in 2, pentru a elimina nevoia de a vedea al cui
+este randul. Fiecare jucator vrea sa-si maximizeze castigul, motiv pentru care vor alege de fiecare data din capatul
+vectorului sortat, dar in fuctie de paritatea numarului de elemente diferenta poate iesi negativa sau pozitiva, dar
+acest lucru nu ne afecteaza pentru ca in modul este corecta.
+
+    Problema 2.
+Pentru problema 2, inanite de a juca jocul anterior, a trebuit sa luam o alegere pentru Tuzgu: care sunt cele mai bune K
+elemente de scos pentru a-i maximiza castigul. Algoritmul nu urmeaza totusi modul in care este formulata cerinta. Vom
+lua deciziile de a lua in considerare sau nu un element pe masura ce trecem prin vectorul sortat (de data asta
+descrescator). Mai degraba, ne intereseaza cate elemente luam in considerare din cele prezente in array, decat cate
+scoatem. Tinand cond ca urmarim maximizarea castigului lui Tuzgu, cand vrem sa aflam diferenta optima pentru array-ul ce
+contine primele i elemente din cel principal si ia in considerare j elemente, avem de ales dintre: diferenta maxima a
+array-ului ce contine primele i-1 elemente si ia in considerare j-1 din elemente la care punem inca un elmente pe care
+il luam in considerare (il adaugam sau il scadem in functie de al cui rand este) si diferenta maxima pentru i-1 elemente
+luand in considerare j elemente, astfel evitand elementul curent. Vom alege valoare maxima oferita de cele doua optiuni.
+
+    Problema 3
+Pentru problema 3, sortarea vectorului nu ne ajuta, din moment ce putem alege doar din capetele acestuia. Alegerile sunt
+dupa cum urmeaza: Tuzgu vrea sa sa-si maximizeze castigul pentru elmentele din vector aflate intre indicii i si j. El
+poate alege v[i] (ramanand apoi cu minimul pe care il poate obtine din vectorul cu elementele intre indicii (i - 2) si j
+sau intre (i - 1) si (j -1), Ritza alegand ori v[i -1 ], ori v[j],  in functie de care i-ar scadea mai mult castigul lui
+Tuzgu) sau poate alege v[j] (ramanand apoi cu minimul pe care il poate obtine din vectorul cu elementele intre indicii
+(i - 1) si (j - 1) sau intre i si (j -2), Ritza avand acelasi obiectiv ca mai devreme). El va alege optiune care ii va
+oferi castigul maxim.

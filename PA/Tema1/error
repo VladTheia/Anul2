@@ -1,0 +1,5 @@
+java -Xss128M -cp bin P1
+
+real	0m0.607s
+user	0m0.891s
+sys	0m0.281s

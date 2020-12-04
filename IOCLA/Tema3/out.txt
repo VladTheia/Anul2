@@ -1,0 +1,309 @@
+======================================================================================
+080486a0 <mystery1>:
+	push   ebp
+	mov    ebp,esp
+	push   ebx
+	mov    edi,DWORD PTR [ebp+0x8]
+	xor    eax,eax
+	xor    ebx,ebx
+
+080486ab <mystery1_l1>:
+	mov    bl,BYTE PTR [edi]
+	test   ebx,ebx
+	je     80486b5 <mystery1_l2>
+	inc    eax
+	inc    edi
+	jmp    80486ab <mystery1_l1>
+
+080486b5 <mystery1_l2>:
+	pop    ebx
+	leave  
+	ret    
+======================================================================================
+080486b8 <mystery2>:
+	push   ebp
+	mov    ebp,esp
+	mov    edx,DWORD PTR [ebp+0x8]
+	push   edx
+	call   80486a0 <mystery1>
+	add    esp,0x4
+	mov    ecx,eax
+	xor    eax,eax
+	mov    edi,DWORD PTR [ebp+0x8]
+	mov    dl,BYTE PTR [ebp+0xc]
+
+080486d1 <mystery2_l1>:
+	mov    bl,BYTE PTR [edi]
+	cmp    bl,dl
+	je     80486db <mystery2_l2>
+	inc    eax
+	inc    edi
+	jmp    80486d1 <mystery2_l1>
+
+080486db <mystery2_l2>:
+	cmp    ecx,0x0
+	jne    80486e5 <mystery2_l3>
+	mov    eax,0xffffffff
+
+080486e5 <mystery2_l3>:
+	leave  
+	ret    
+======================================================================================
+080486e7 <mystery3>:
+	push   ebp
+	mov    ebp,esp
+	mov    ebx,DWORD PTR [ebp+0x8]
+	mov    edx,DWORD PTR [ebp+0xc]
+	mov    ecx,DWORD PTR [ebp+0x10]
+
+080486f3 <mystery3_l1>:
+	mov    al,BYTE PTR [ebx]
+	mov    ah,BYTE PTR [edx]
+	cmp    al,ah
+	jne    8048703 <mystery3_l2>
+	inc    ebx
+	inc    edx
+	loop   80486f3 <mystery3_l1>
+	xor    eax,eax
+	jmp    8048708 <mystery3_l3>
+
+08048703 <mystery3_l2>:
+	mov    eax,0x1
+
+08048708 <mystery3_l3>:
+	leave  
+	ret    
+======================================================================================
+0804870a <mystery4>:
+	push   ebp
+	mov    ebp,esp
+	push   ebx
+	mov    eax,DWORD PTR [ebp+0x8]
+	mov    ebx,DWORD PTR [ebp+0xc]
+	mov    ecx,DWORD PTR [ebp+0x10]
+
+08048717 <mystery4_l1>:
+	mov    dl,BYTE PTR [ebx]
+	mov    BYTE PTR [eax],dl
+	inc    eax
+	inc    ebx
+	loop   8048717 <mystery4_l1>
+	pop    ebx
+	leave  
+	ret    
+======================================================================================
+08048722 <mystery5>:
+	push   ebp
+	mov    ebp,esp
+	mov    eax,DWORD PTR [ebp+0x8]
+	cmp    al,0x30
+	jl     8048737 <mystery5_l1>
+	cmp    al,0x39
+	jg     8048737 <mystery5_l1>
+	mov    eax,0x1
+	jmp    804873c <mystery5_l2>
+
+08048737 <mystery5_l1>:
+	mov    eax,0x0
+
+0804873c <mystery5_l2>:
+	leave  
+	ret    
+======================================================================================
+0804873e <mystery6>:
+	push   ebp
+	mov    ebp,esp
+	mov    edi,DWORD PTR [ebp+0x8]
+	push   edi
+	call   80486a0 <mystery1>
+	add    esp,0x4
+	mov    edi,DWORD PTR [ebp+0x8]
+	mov    ecx,eax
+	sub    esp,eax
+	mov    ebx,ebp
+	sub    ebx,eax
+
+08048758 <mystery6_l1>:
+	mov    dl,BYTE PTR [edi+ecx*1-0x1]
+	mov    BYTE PTR [ebx],dl
+	inc    ebx
+	loop   8048758 <mystery6_l1>
+	push   eax
+	mov    ebx,ebp
+	sub    ebx,eax
+	push   ebx
+	push   edi
+	call   804870a <mystery4>
+	add    esp,0xc
+	leave  
+	ret    
+======================================================================================
+08048772 <mystery7>:
+	push   ebp
+	mov    ebp,esp
+	xor    edx,edx
+	xor    ebx,ebx
+	mov    eax,DWORD PTR [ebp+0x8]
+	sub    esp,0x4
+	mov    DWORD PTR [ebp-0x4],0x0
+	push   eax
+	call   80486a0 <mystery1>
+	add    esp,0x4
+	mov    ecx,eax
+	push   eax
+	push   ebx
+	push   ecx
+	push   edx
+	push   edi
+	mov    esi,DWORD PTR [ebp+0x8]
+	push   esi
+	call   804873e <mystery6>
+	add    esp,0x4
+	pop    edi
+	pop    edx
+	pop    ecx
+	pop    ebx
+	pop    eax
+
+080487a7 <mystery7_l1>:
+	mov    bl,BYTE PTR [esi+ecx*1-0x1]
+	push   ebx
+	push   ebx
+	call   8048722 <mystery5>
+	add    esp,0x4
+	cmp    eax,0x0
+	je     80487d3 <mystery7_l3>
+	pop    ebx
+	sub    bl,0x30
+	push   ebx
+	mov    ebx,0xa
+	mov    eax,DWORD PTR [ebp-0x4]
+	mul    ebx
+	pop    ebx
+	add    eax,ebx
+	mov    DWORD PTR [ebp-0x4],eax
+	loop   80487a7 <mystery7_l1>
+	jmp    80487db <mystery7_l2>
+
+080487d3 <mystery7_l3>:
+	mov    eax,0xffffffff
+	add    esp,0x4
+
+080487db <mystery7_l2>:
+	leave  
+	ret    
+======================================================================================
+080487dd <mystery8>:
+	push   ebp
+	mov    ebp,esp
+	sub    esp,0x10
+	mov    DWORD PTR [ebp-0x4],0x0
+	mov    DWORD PTR [ebp-0x8],0x0
+
+080487f1 <mystery8_l1>:
+	mov    eax,DWORD PTR [ebp-0x8]
+	cmp    eax,DWORD PTR [ebp+0x10]
+	jae    804884f <mystery8_l2>
+	mov    edx,DWORD PTR [ebp+0x8]
+	mov    eax,DWORD PTR [ebp-0x4]
+	add    eax,edx
+	mov    al,BYTE PTR [eax]
+	cmp    al,0xa
+	je     804884f <mystery8_l2>
+	mov    edx,DWORD PTR [ebp+0x8]
+	mov    eax,DWORD PTR [ebp-0x4]
+	add    eax,edx
+	mov    al,BYTE PTR [eax]
+	test   al,al
+	je     804884f <mystery8_l2>
+	mov    edx,DWORD PTR [ebp+0x8]
+	mov    eax,DWORD PTR [ebp-0x4]
+	add    eax,edx
+	mov    dl,BYTE PTR [eax]
+	mov    ecx,DWORD PTR [ebp+0xc]
+	mov    eax,DWORD PTR [ebp-0x8]
+	add    eax,ecx
+	mov    al,BYTE PTR [eax]
+	cmp    dl,al
+	je     8048836 <mystery8_l3>
+	mov    DWORD PTR [ebp-0x8],0x0
+	jmp    804883a <mystery8_l4>
+
+08048836 <mystery8_l3>:
+	add    DWORD PTR [ebp-0x8],0x1
+
+0804883a <mystery8_l4>:
+	mov    eax,DWORD PTR [ebp-0x8]
+	cmp    eax,DWORD PTR [ebp+0x10]
+	jne    8048849 <mystery8_l5>
+	mov    eax,0x1
+	jmp    8048854 <mystery8_l6>
+
+08048849 <mystery8_l5>:
+	add    DWORD PTR [ebp-0x4],0x1
+	jmp    80487f1 <mystery8_l1>
+
+0804884f <mystery8_l2>:
+	mov    eax,0x0
+
+08048854 <mystery8_l6>:
+	leave  
+	ret    
+======================================================================================
+08048856 <mystery9>:
+	push   ebp
+	mov    ebp,esp
+	sub    esp,0x18
+	mov    DWORD PTR [ebp-0xc],0x0
+	mov    eax,DWORD PTR [ebp+0xc]
+	mov    DWORD PTR [ebp-0x10],eax
+	push   DWORD PTR [ebp+0x14]
+	call   80486a0 <mystery1>
+	add    esp,0x4
+	mov    DWORD PTR [ebp-0x14],eax
+	mov    eax,DWORD PTR [ebp+0xc]
+	mov    DWORD PTR [ebp-0xc],eax
+
+0804887d <mystery9_l1>:
+	mov    eax,DWORD PTR [ebp-0xc]
+	cmp    eax,DWORD PTR [ebp+0x10]
+	jae    80488d6 <mystery9_l2>
+	mov    edx,DWORD PTR [ebp+0x8]
+	mov    eax,DWORD PTR [ebp-0xc]
+	add    eax,edx
+	mov    al,BYTE PTR [eax]
+	cmp    al,0xa
+	jne    80488d0 <mystery9_l3>
+	mov    edx,DWORD PTR [ebp+0x8]
+	mov    eax,DWORD PTR [ebp-0x10]
+	add    eax,edx
+	push   DWORD PTR [ebp-0x14]
+	push   DWORD PTR [ebp+0x14]
+	push   eax
+	call   80487dd <mystery8>
+	add    esp,0xc
+	test   eax,eax
+	setne  al
+	test   al,al
+	je     80488c7 <mystery9_l4>
+	mov    edx,DWORD PTR [ebp+0x8]
+	mov    eax,DWORD PTR [ebp-0x10]
+	add    eax,edx
+	sub    esp,0xc
+	push   eax
+	call   804822c <print_line>
+	add    esp,0x10
+
+080488c7 <mystery9_l4>:
+	mov    eax,DWORD PTR [ebp-0xc]
+	add    eax,0x1
+	mov    DWORD PTR [ebp-0x10],eax
+
+080488d0 <mystery9_l3>:
+	add    DWORD PTR [ebp-0xc],0x1
+	jmp    804887d <mystery9_l1>
+
+080488d6 <mystery9_l2>:
+	leave  
+	ret    
+======================================================================================

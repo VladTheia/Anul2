@@ -1,0 +1,21 @@
+Vlad Theia-Madalin
+324CC
+Tema 2 IOCLA
+
+TASK1
+Avem nevoie de lungimea sirului criptat pentru a adresa cheii. In procedura xor_strings parcurgem sirul si cheia (acestea avand lungimea egala) si facem xor caracter cu caracter.
+
+TASK2
+In procedura rolling_xor avem nevoie de lungimea sirului pentru a-l parcurge de la final spre inceput. Facem xor intre elementele n si n-1, apoi decrementam n (n fiind lungimea sirului) pana ajungem la primul element.
+
+TASK3
+Aflam cheia ca la primul task. In procedura xor_hex_strings convertim sirul si cheia din hex in binar, apoi aplicam algorimul de la primul task. Procedura de conversie consta in injumatatirea sirului primit (face din 2 bytes, unul).
+
+TASK4
+Procedura base32decode consta in tratarea a 5 cazuri. Pentru a decodifica 5 caractere, avem nevoie sa citim 8 din input. Acestea sunt teoretic reprezentate din 5 biti, dar la citire vor primi inainte inca 3 zero-uri. Astfel, vom fi nevoiti sa facem shiftari de biti si adunari pentru a reconstrui caracterele. In primul caz concatenam cei 5 biti ai primului caracter cu primii 3 biti ai celui de-al doilea. In cazul 2 concatenam cei 2 biti ramasi din al doilea caracter cu cei 5 biti ai celui te-al treilea si primul bit din al patrulea. In cazul 3 concatenam cei 4 biti ramasi din al patrulea caracter cu primii 4 din al cincilea. In cazul 4 concatenam bitul ramas din al cincilea caracter, de cei 5 biti din al saselea si de primii 2 din al saptelea. In cazul 5 concatenam cei 3 biti ramasi din al saptelea cu cei 5 din al optulea. Repetam aceasta procedura pana cand intalnim sfarsitul sirului de decodat. Apare o procedura ajutatoare, index, care converteste valoare unui caracter de la cea din codul ASCII la cea din tabelul de indecsi.
+
+TASK5
+Procedura bruteforce_singlebyte_xor incepe prin aflarea cheii. Stim ca 'force' face parte din sirul decrpitat, asa ca facem xor pe fiecare caracter din 'force' cu 5 caractere consecutive din sirul criptat. Daca rezultatul este egal pentru 5 caractere consecutive, atunci am gasit cheia. In final, facem xor pe cheie cu fiecare caracter din sirul decriptat.
+
+TASK6
+Trimitem procedurii decode_vigenere sirul si cheia. Avem doua posibilitati: fie caracterul citit este o litera, caz in care scadem din valoarea ei, valoare cheii (exista posibilitatea de a obtine o valoare mai mica decat 'a', motiv pentru care mergem la 'z' si scandem ce a mai ramas) sau un semn, caz in care nu facem nimic (doar dam skip unui caracter din cheie).

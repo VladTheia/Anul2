@@ -1,0 +1,31 @@
+Vlad Theia-Madalin
+324CC
+Tema 2 PA
+
+    Problema 1
+Pentru rezolvarea primei probleme am folosit un array de liste de distante fata 
+de root. Stiind ca avem n noduri, pe masura ce citim, adaugam nodul i 
+(i = 1..n) la lista corespunzatoare distantei citite. In caz ca distanta maxima 
+primita este mult mai mica decat numarul de noduri, o salvam pentru a evita 
+parcurgeri inutile. Daca avem doua elemente root (cu distanta 0), input-ul este 
+gresit. Facem o lista de muchii in care adaugam muchiile formate dintre fiecare 
+element de distanta k si unul din elementel de distanta k-1. Daca avem o lista 
+de distanta k nevida si o lista de distanta k-1 vida, input-ul este gresit, 
+altfel afisam numarul de elemente din lista de muchii si fiecare membru al ei.
+
+    Problema 2
+Pentru rezolvarea problemei 2 am folosit o variabila in care am retinut numarul 
+de elemente al celei mai mari regiuni care indeplineste conditia ceruta, 
+actualizat de fiecare data cand gaseam o regiune mai mare. Pentru explorarea 
+regiunilor am facut cate o parcurgere, cu o matrice de vizitate diferita, pentru 
+fiecare nod al matricei. Parcurgerea consta in verificarea daca indecsii nodului 
+pentru care se face parcurgerea ies din limitele matricei, daca nodul a mai fost 
+vizitat, daca este mai mic decat minimul curent al regiunii (caz in care il 
+actualizam) si daca indeplineste conditia (max - min <= k). Daca nodul trece de 
+verificari, marim dimensiunea regiunii, il marcam ca vizitat si continuam 
+cautarea in nodurile adiacente.
+
+    Problemele 3 si 4
+Pentru ambele am folosti algoritmul Bellman-Fort implementat la laborator. Nu am
+avut timp sa-l adaptez la cerinta problemelor, dar isi da seama cand nu exista 
+un drum intre 1 si N.

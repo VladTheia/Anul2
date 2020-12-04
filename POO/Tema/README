@@ -1,0 +1,159 @@
+Nume: Vlad Theia-Madalin
+Grupa: 324CC
+Grad de dificultate al temei: 8/10
+
+Detalii de implementare
+
+Clasa Store:
+Are 3 membrii: name (numele magazinului), departments (vector cu departamentele 
+magazinului) si customers (vector cu clientii magazinului). Clasa va implementa
+un design pattern singleton, astfel folosind lazy instantiation. 
+Metode cerute:
+-> enter(Customer) introduce un client in vectorul de clienti (intra in magazin); 
+-> exit(Customer) indica iesirea unui client din magazin (acesta fiind scos din
+vectorul de clienti);
+-> getShoppingCart(Double) primeste drept parametru bugetul cosului de 
+cumparaturi pe care il intoarce;
+-> getCustomers() si getDepartments() intorc vectorii de clienti, respectiv de 
+departamente ai magazinului;
+-> addDepartment(department) adauga departamentul primit ca parametru in 
+vectorul de departamente al magazinului;
+-> getDepartment(Integer) intoarce departamentul cu ID egal cu intregul primit;
+Metode ajutatoare:
+-> setName(String) modifica numele magazinului in cel primit ca parametru;
+-> getCustomer(String) cauta un client dupa nume (util pentru prelucrarea 
+clientilor, avand in vedere ca in fisierele de intrare sunt folosite numele 
+in descirerea evenimentelor);
+-> getItem(Integer) intoarce itemul cu ID-ul primit (folosit atunci cand 
+primim ID-ul unui item, dar nu si departamentul lui);
+ 
+Clasa Department:
+Are are 5 membrii: name, items (vector de produse), customers (clienti care au 
+cumparat cel putin un produs din acel departament), observers (clienti care au 
+cel putin un produs din acel departament in lista de dorinte - util pentru 
+design pattern-ul Observer) si ID. De asemenea, implementeaza interfata Subject
+Metode cerute:
+-> enter(Customer) introduce clientul produs in lista de clienti;
+-> exit(Customer) scote clientul din lista (se decide ca nu vrea 
+sa mai cumpere vreun produs din acel departament)
+-> getCustomers() intoarce lista de clienti;
+-> getID() intoarce ID-ul departamentului;
+-> addItem(Item) adauga produsul primit in departament;
+-> getItems() intoarce lista de produse;
+-> addObserver(Customer) adauga un client in lista de observatori (atunci cand 
+are cel putin un item din cel departament in lista de dorinte);
+-> removeObserver(Customer) scoate un clinet din lista de obbservatori (nu mai 
+are niciun produs din departament in lista de dorinte);
+-> notifyAllObservers(Notification) adauga notificare primita in listele de 
+notificari ale clientilor care sunt observatori ai departamentului;
+-> accept(ShoppingCart) este specifica design pattern-ului Visitor si are 
+rezultate diferite in functie de tipul departamentului care apeleaza metoda;
+Metode ajutatoare:
+-> getItem(Integer) intoarce produsul cu ID ul primit;
+-> getName(String) intoarce numele departamenului (util in prelucrarea datelor 
+pe masura ce se citeste din fisiere, vom stii cu ce tip de departament lucram 
+in functie de numele acestuia);
+-> cheapest() returneaza cel mai ieftin produs din departament (necesar pentru 
+accept-ul lui SoftwareDepartment);
+-> mostExpensive() returneaza cel mai scump produs (pentru accept-ul folosit de
+VideoDepartment);
+Clase mostenite: BookDepartment, MusicDepartment, VideoDepartment, si 
+SoftwareDepartment - primesc o metoda accept() pentru implementarea 
+design pattern-ului Visitor
+
+Clasa Item:
+Are 4 membrii: numele, ID-ul, pretul si departamentul din care face parte.
+Pentru a tine cont de principiul incapsularii datelor am implementat 
+getters si setters pentru fiecare membru.
+
+Clasa Customer:
+Are 5 membrii: numele, cosul de cumparaturi, lista de dorinte, strategia si 
+lista de notificari;
+Metode folosite:
+-> getters si setters pentru membrii;
+-> update(Notification) adauga notificarea primita in lista clientului 
+(specifica design pattern-ului observer);
+
+Clasa Notification:
+Are 3 membrii: tipul notificarii (ADD, REMOVE sau MODIFY), ID-ul 
+departamentului si ID-ul produsului care a declansat notificarea;
+
+Clasa ItemList:
+Fiind cea mai complexa clasa din program, aceasta contine doua clase interne 
+(Node si ItemIterator) si un comparator , folsite pentru a o implementa ca 
+lista dublu inlantuita ordonata. 
+Clasa Node contine un produs si referinte catre nodul din urma si cel urmator,
+oferind astfel scheletul unei liste dublu inlanuite.
+Clasa ItemIterator implementeaza ListIterator si prin implementarea ei avem 
+posibilitatea de a itera prin propria lista de iteme.
+Metode cerute pentru ItemList:
+-> add(Item) adauga in lista un nod ce contine produsul primit;
+-> addAll(Collection) adauga in lista toate produsele din colectia primita;
+-> getItem(Integer) returneaza produsul aflat in lista pe pozitia primita;
+-> getNode(Integer) returneaza nodul aflat in lista la pozitia primita;
+-> indexOf(Item) returneaza pozitia produsui dat;
+-> indexOf(Node) returneaza pozitia nodului dat;
+-> contains(Item) determina daca lista contine produsul primit;
+-> contains(Node) determina daca lista contine nodul primit;
+-> remove(Item) sterge din lista nodul care contine produsul primit;
+-> removeAll(Collection) sterge din lista toate produsele care fac parte din 
+colectia primita;
+-> listIterator(Integer) intoarce un iterator al listei, pornind de la pozitia
+ data;
+-> listIterator() intoarce un iterator al listei pornind de la inceput;
+-> getTotalPrice() intoarce pretul total al produselor din lista respectiva;
+
+Clasa ShoppingCart:
+Subclasa a clasei ItemList, contine un comparator (ordoneaza lista in functie de
+pret, iar daca acesta este egal, in functie de nume) si un buget.
+Metode:
+-> add(Item) verifica daca bugetul permite cumpararea produsului dat, iar daca 
+aceasta se poate face, va creea un obiect nou identic cu cel primit (pentru a 
+nu fi modificat un produs din cosul de cumparatori atunci cand se modifica in 
+magazin), iar apoi va folosii adaugarea clasei parinte;
+-> remove(Item) pune inapoi in buget banii reprezentati de costul produsului 
+scos, apoi apeleaza functia de stergere a clasei parinte;
+-> visit(xDepartment) este metoda apelata de accept(), avand cate o implementare
+pentru fiecare tip de departament (pentru fiecare avand un comportament diferit);
+
+Clasa WishList:
+Subclasa a clasei ItemList, contine un comparator (ordoneaza lista alfabetic) si 
+o strategie (necesara pentru implementarea design pattern-ului Strategy);
+Metode:
+-> alphabetical(), cheapest() si getMostRecent() sunt metode ajutatoare pentru 
+executarea strategiilor;
+-> executeStrategy() declanseaza executia strategiei specifice listei respective;
+
+Clasele StrategyA, StrategyB, StrategyC implementeaza interfata Strategy si 
+executa metoda specifica strategiei respective;
+
+Clasa Test: ----> where the magic happens
+Clasa principala, care se ocupa de rularea programului.
+Se foloseste un scanner pentru citirea datelor din fisier.
+Din fisierul "store.txt" citim numele magazinului, dupa care iteram de 4 ori 
+in acelasi mod (pentru ca sunt 4 departamente): citim numele departamentului, 
+ID-ul si numarul de elemente. Folosindu-ne de numarul de produse urmeaza sa 
+iteram prin acestea, atribuind fiecarui produs numele, departamentul, ID-ul si
+pretul corespunzator. 
+Din fisierul "customers.txt" citim numarul de clienti pentru a stii de cate ori
+sa facem citirea, dupa care atribuim fiecarui client un ShoppingCart cu bugetul
+primit ca input si ii atribuim strategia primita.
+Din fisierul "events.txt" citim numarul de evenimente pentru a stii de cate ori
+sa iteram prin acestea. Primul lucru citit este evenimentul in sine, pe care il 
+selectam cu ajutorul unui switch, avand una din posibilitatile:
+-> addItem, care adauga in cosul de cumparaturi/lista de dorinte a clientului 
+dat, produsul cu ID-ul dat;
+-> delItem, sterge produsul cu ID-ul dat din ShoppingCart-ul/WishList-ul 
+clientului dat;
+-> addProduct/modifyProduct/delProduct adauga/modifica pretul/sterge un/unui 
+produs, specificandu-se ID-ul acestuia (aceasta operatie trimite notificarea 
+corespunzatoare observatorilor); 
+-> getItem afiseaza si pune in shoppingCart-ul clientului dat, produsul returnat
+in functie de strategia lui;
+-> getItems afiseaza produsele din ShoppingCart/WishList-ul clientului dat;
+-> accept aplica metoda accept() clientului dat, pentru departamentul al carui 
+ID este specificat;
+-> getObservers intoarce lista de observatori a departamenului pentur care s-a 
+introdus ID-ul;
+-> getNotifications intoarce lista de notificari a clientului dat;
+Pentru introducerea rezultatelor in fisierul "output.txt" folosim un FileWriter.

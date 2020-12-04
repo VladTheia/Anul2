@@ -1,0 +1,87 @@
+
+Compiling java/task-3...
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================
+Running java/task-3...
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Main$Task.parcurgere(Main.java:49)
+	at Main$Task.parcurgere(Main.java:45)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.parcurgere(Main.java:44)
+	at Main$Task.getAnswer(Main.java:58)
+	at Main$Task.solve(Main.java:65)
+	at Main.main(Main.java:70)
+========================================

@@ -1,0 +1,77 @@
+mistery1() - functie care determina lungimea sirului de input
+@string: adresa de inceput a sirului
+
+Functia are un singur argument, adresa unui sir ASCII, singura conditie de
+terminare a buclei este gasirea unui byte "0x00". Daca byte-ul curent este 
+diferit, incrementam registrul care pastreaza lungimea sirului si registrul
+in care avem adresa sirului de input.
+
+prototip: int strlen(char *s);
+
+mistery2() - functie care verifica daca un caracter dat se afla intr-un sir dat
+@string: adresa de inceput a sirului
+@char: caracterul cautat
+
+Functia are doua argumente, adresa unui sir ASCII si un caracter. Putem observa 
+ca decurge in felul urmator: primeste adresa sirului, cu care apeleaza functia 
+mistery1(), pentru a-i obtine lungimea, dupa care stocheaza din nou adresa de 
+inceput a sirului intr-un registru si caracterul cautat in alt registru. Urmeaza
+parcurgerea buclei: compara fiecare caracter din sir cu caracerul cautat, dar 
+observam un bug (singura cale de a iesi din bulca este sa intalnim caracterul cautat,
+daca acesta nu se afla in sir, bucla va fii infinita). Daca gasim caracterul cautat,
+ajungem la o conditie care nu este necesara (verificam daca lungimea sirului dat 
+este diferita de 0, ceea ce este clar adevarat pentru ca daca ar fi fost 0, nu am fi
+intalnit caracterul cautat).
+
+prototip: int strchr(char *s, char c);
+
+mistery3() - functie care determina daca doua siruri sunt identice pana la o 
+             anumita lungime
+@string1: adresa de inceput a primului sir
+@string2: adresa de inceput a celui de-al doilea sir
+@int: lungimea sirului cautat
+
+Functia are trei argumente, adresele de inceput a doua siruri ASCII si lungmea 
+pana la care vrem sa se parcurga sirurle. Dupa plasarea argumentelor in 
+registrii, se intra intr-un loop: compara caracterele de pe aceeasi pozitie 
+din fiecare string pana la lungimea dorita. Daca intalnim caractere diferite 
+pe aceeasi pozitie, iesirea este 1, iar daca toate caracterele sunt 
+egale pentru lungimea dorita, iesirea este 0. Un posibil bug ar fi introducerea
+unei lungimi mai mare decat lungimea unuia din siruri, astfel rezultatul va fi
+eronat.
+
+prototip: int strnstr(char *s1, char *s2, int n);
+
+mistery4() - functie care copiaza un anumit numar de caractere dintr-un sir in
+             alt sir
+@string1: adresa de inceput a primului sir
+@string2: adresa de inceput a celui de-al doilea sir
+@int: numarul de caractere de copiat
+
+Functia are trei argumente, adresele de inceput a doua siruri ASCII si numarul 
+de caractere de copiat. Pune argumentele in registrii, intra intr-un loop care 
+se repeta de cate ori indica numarul primit ca input, unde sunt parcurse 
+sirurile astfel: se copiaza caracterul curent din al doilea sir, iar apoi se 
+pune in locul celui din pozitia curenta a primului sir. Un posibil bug este 
+primirea unui numar mai mare decat lungimea sirului de copiat. Returneaza 
+adresa sirului rezultat.
+
+prototip: char* strncpy(char *s1, char *s2, int n);
+
+mistery5() - functie care determina daca un caracter dat este sau nu cifra
+@char: un caracter
+
+Functia are un singur argument, un caracter. Il stocheaza intr-un registru, 
+verifica daca se afla intre "0x30" si "0x39", adica cifrele de la 0 la 9.
+Daca nu se afla in intervalul respectiv, returneaza 0, altfel 1.
+
+prototip: int isFigure(char c);
+
+mistery6() - functie care
+@string: adresa de inceput a sirului
+
+Functia are un singur parametru, adresa de inceput a unui sir ASCII.
+
+prototip: char* blabla(char *s);
+
+mistery7() - functie care 

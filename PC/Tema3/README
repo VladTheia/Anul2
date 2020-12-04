@@ -1,0 +1,15 @@
+Vlad Theia-Madalin
+324CC
+
+    In vederea implementarii acestei teme am folosit API-ul de la laboratorul de 
+HTTP (functiile de compunere a mesajului pentru GET/POST request), de DNS 
+(functia de obtinere a IP-ului) si biblioteca parson pentru parsarea 
+raspunsurilor de la server, acestea fiind in format json. 
+    Pasii pentru rezolvarea fiecarui task au fost destul de similari:
+- parsarea cookie-urilor;
+- parsarea json-ului;
+- construirea header-ului si corpului request-ului;
+- deschiderea socket-ului;
+- trimiterea mesajului request-ului;
+- salvarea raspunsului de la server;
+- inchiderea socket-ului.
